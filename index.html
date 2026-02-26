@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>NutriSync — Login</title>
+    <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <meta name="theme-color" content="#587f66" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="assets/icon-192.png" type="image/png">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="bg">
+  <main class="auth-shell">
+  <div class="splash" id="splash" data-reveal=".auth-card">
+    <div class="splash-inner">
+      <div class="splash-logo"><img src="assets/brand-logo.png" alt="Plato Inteligente"></div>
+      <div class="splash-title">PLATO INTELIGENTE</div>
+      <div class="splash-sub">Tu plan de comidas</div>
+      <div class="splash-pulse" aria-hidden="true"></div>
+    </div>
+  </div>
+
+    <section class="auth-card">
+      <div class="brand">
+        <div class="brand-icon brand-icon--xl">
+          <img src="assets/brand-logo.png" alt="Plato Inteligente">
+        </div>
+        <h1>NutriSync</h1>
+        <p class="muted" data-i18n="login.title">Login / Onboarding</p>
+      </div>
+
+      <div class="auth-form">
+        <label class="field">
+          <span data-i18n="login.email">Correo</span>
+          <input id="email" type="email" autocomplete="email" placeholder="tu@correo.com" />
+        </label>
+
+        <label class="field">
+          <span data-i18n="login.password">Contraseña</span>
+          <input id="password" type="password" autocomplete="current-password" placeholder="••••••••" />
+        </label>
+
+        <div class="row-actions">
+          <button class="btn btn-primary" id="btnEmailLogin" type="button" data-i18n="login.signin">Iniciar sesión</button>
+          <button class="btn btn-ghost" id="btnEmailCreate" type="button" data-i18n="login.signup">Crear cuenta</button>
+        </div>
+
+        <div class="divider"><span data-i18n="login.or">o</span></div>
+
+        <button class="btn btn-social btn-google" id="btnGoogle" type="button">
+          <span class="btn-ico"><img src="assets/google-icon.png" alt=""></span>
+          <span data-i18n="login.google">Continuar con Google</span>
+        </button>
+
+        <button class="btn btn-social btn-apple" id="btnApple" type="button">
+          <span class="btn-ico">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.8 13.4c0 2.2 1.9 3 1.9 3s-1.5 4.4-3.6 4.4c-1 0-1.7-.6-2.7-.6s-1.8.6-2.7.6c-2 0-5.2-4-5.2-8.6 0-3.8 2.5-5.8 4.9-5.8 1 0 1.9.7 2.6.7.7 0 1.7-.7 3-.7.5 0 2.1.1 3.2 1.6-.1.1-1.9 1.1-1.9 3zM14.7 4.2c.8-1 1.4-2.3 1.2-3.7-1.2.1-2.6.8-3.4 1.8-.7.9-1.4 2.3-1.2 3.6 1.3.1 2.6-.7 3.4-1.7z"/></svg>
+          </span>
+          <span data-i18n="login.apple">Continuar con Apple / iCloud</span>
+        </button>
+
+        <div class="terms-row">
+          <label class="terms">
+            <input type="checkbox" id="acceptTerms">
+            <span data-i18n="login.terms">Acepto los Términos y Condiciones</span>
+            <a href="#" id="openTerms" class="terms-link">(ver)</a>
+          </label>
+        </div>
+        <div id="msg" class="msg" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <footer class="auth-footer">
+      <span class="muted tiny">v1.0 • PWA • GitHub Pages</span>
+    </footer>
+  </main>
+
+  <script type="module">
+  import { runSplash } from "./js/splash.js";
+  runSplash({ durationMs: 850 });
+</script>
+  <script type="module">
+    import { applyI18n } from "./js/i18n.js";
+    applyI18n();
+  </script>
+  <script type="module" src="js/auth.js"></script>
+  <script>
+    // PWA install
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js"));
+    }
+  </script>
+
+  <!-- Terms Modal -->
+  <dialog id="termsModal" class="modal">
+    <div class="modal__card">
+      <div class="modal__head">
+        <h3>Términos y Condiciones</h3>
+        <button id="closeTerms" class="icon-btn" aria-label="Cerrar">✕</button>
+      </div>
+      <div class="modal__body">
+        <p>Al usar NutriSync aceptas que este plan es orientativo. No reemplaza asesoramiento médico/nutricional.
+        Tu información se guarda en tu cuenta para personalizar objetivos y seguimiento.</p>
+      </div>
+      <div class="modal__foot">
+        <button class="btn" id="closeTerms2">Entendido</button>
+      </div>
+    </div>
+  </dialog>
+
+</body>
+</html>

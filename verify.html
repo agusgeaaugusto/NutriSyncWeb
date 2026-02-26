@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Verificar correo • Plato Inteligente</title>
+    <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/favicon-48.png" type="image/png">
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+  <main class="auth">
+    <div class="card auth-card">
+      <div class="splash-logo">
+        <img src="assets/brand-logo.png" alt="Plato Inteligente">
+      </div>
+      <h1>Verificá tu correo</h1>
+      <p class="muted">Te enviamos un email para confirmar tu cuenta. Abrilo y tocá “Verificar”.</p>
+
+      <div class="actions" style="margin-top:14px;">
+        <button class="btn" id="btnResend">Reenviar correo</button>
+        <button class="btn btn-primary" id="btnIveVerified">Ya verifiqué</button>
+      </div>
+
+      <p id="msg" class="muted" style="margin-top:12px;"></p>
+    </div>
+  </main>
+
+  <script type="module" src="js/verify.js"></script>
+</body>
+</html>

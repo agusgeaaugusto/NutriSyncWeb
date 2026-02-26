@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>NutriSync — My Daily Plan</title>
+    <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <meta name="theme-color" content="#587f66" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="assets/icon-192.png" type="image/png">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="bg">
+  <div class="splash" id="splash" data-reveal=".app-shell">
+    <div class="splash-inner">
+      <div class="splash-logo"><img src="assets/brand-logo.png" alt="Plato Inteligente"></div>
+      <div class="splash-title">PLATO INTELIGENTE</div>
+      <div class="splash-sub">Cargando tu plan…</div>
+      <div class="splash-pulse" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <div class="app-shell">
+    <!-- Top bar -->
+    <header class="topbar">
+      <button class="icon-btn" id="btnDrawer" aria-label="Abrir menú">
+        <svg viewBox="0 0 24 24"><path d="M4 6h16v2H4V6Zm0 5h16v2H4v-2Zm0 5h16v2H4v-2Z"/></svg>
+      </button>
+      <div class="topbar-title">
+        <div class="muted tiny">My Daily Plan</div>
+        <div class="title-row">
+          <span id="helloName" class="hello">Hola</span>
+        </div>
+      </div>
+      <button class="avatar" id="btnProfile" aria-label="Perfil">
+        <img id="avatarImg" alt="Avatar" />
+      </button>
+    </header>
+
+    <!-- Drawer -->
+    <aside class="drawer" id="drawer">
+      <div class="drawer-card">
+        <div class="drawer-user">
+          <img id="drawerAvatar" class="drawer-avatar" alt="Avatar" />
+          <div class="drawer-meta">
+            <div id="drawerName" class="drawer-name">Usuario</div>
+            <div id="drawerEmail" class="drawer-email muted tiny">email</div>
+          </div>
+        </div>
+
+        <nav class="drawer-nav">
+          <a href="#" class="drawer-item active" data-route="home">
+            <span class="drawer-ico">
+              <svg viewBox="0 0 24 24"><path d="M12 3 3 10v11h6v-7h6v7h6V10l-9-7Z"/></svg>
+            </span>
+            <span data-i18n="nav.home">Home</span>
+          </a>
+          <a href="#" class="drawer-item" data-route="profile">
+            <span class="drawer-ico">
+              <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-4.4 0-8 2.1-8 4.7V21h16v-2.3C20 16.1 16.4 14 12 14Z"/></svg>
+            </span>
+            <span data-i18n="nav.profile">Profile & Biometrics</span>
+          </a>
+          <a href="#" class="drawer-item" data-route="premium">
+            <span class="drawer-ico">
+              <svg viewBox="0 0 24 24"><path d="M7 3h10v2H7V3Zm11 4H6l-2 5 8 9 8-9-2-5Zm-8 12-5-6h10l-5 6Z"/></svg>
+            </span>
+            <span data-i18n="nav.premium">Premium Plan</span>
+          </a>
+          <a href="#" class="drawer-item" data-route="settings">
+            <span class="drawer-ico">
+              <svg viewBox="0 0 24 24"><path d="M19.14 12.94a7.7 7.7 0 0 0 0-1.88l2-1.55-2-3.46-2.35.95a7.5 7.5 0 0 0-1.63-.94L14.8 2h-4l-.36 2.56a7.5 7.5 0 0 0-1.63.94l-2.35-.95-2 3.46 2 1.55a7.7 7.7 0 0 0 0 1.88l-2 1.55 2 3.46 2.35-.95c.5.38 1.05.7 1.63.94L10.8 22h4l.36-2.56c.58-.24 1.13-.56 1.63-.94l2.35.95 2-3.46-2-1.55ZM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5Z"/></svg>
+            </span>
+            <span data-i18n="nav.settings">Settings</span>
+          </a>
+
+          <button class="drawer-item" id="btnLang" type="button">
+            <span class="drawer-ico">
+              <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm7.93 9h-3.22a15.8 15.8 0 0 0-1.16-5A8.03 8.03 0 0 1 19.93 11ZM12 4c.9 1.2 1.63 3.3 2 7H10c.37-3.7 1.1-5.8 2-7ZM4.07 13h3.22a15.8 15.8 0 0 0 1.16 5A8.03 8.03 0 0 1 4.07 13Zm3.22-2H4.07a8.03 8.03 0 0 1 4.38-5 15.8 15.8 0 0 0-1.16 5ZM12 20c-.9-1.2-1.63-3.3-2-7h4c-.37 3.7-1.1 5.8-2 7Zm3.55-2a15.8 15.8 0 0 0 1.16-5h3.22a8.03 8.03 0 0 1-4.38 5Z"/></svg>
+            </span>
+            <span data-i18n="nav.languages">Idiomas</span>
+          </button>
+          <button class="drawer-item danger" id="btnLogout" type="button">
+            <span class="drawer-ico">
+              <svg viewBox="0 0 24 24"><path d="M10 17v-2h4v-6h-4V7l-5 5 5 5Zm9 4H12v-2h7V5h-7V3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2Z"/></svg>
+            </span>
+            <span data-i18n="nav.logout">Salir</span>
+          </button>
+        </nav>
+      </div>
+      <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
+    </aside>
+
+    <!-- Content -->
+    <main class="content">
+      <section id="view-home" class="view active">
+        <div class="goal-card">
+          <div>
+            <div class="muted tiny">Meta de hoy</div>
+            <div class="kcal-row">
+              <input id="goalKcal" class="kcal-input" type="number" min="1200" max="4500" step="50" />
+              <span class="kcal-label">kcal</span>
+            </div>
+          </div>
+          <button id="btnQuickAdd" class="pill">
+            <span aria-hidden="true">＋</span> Nuevo
+          </button>
+        </div>
+
+        <div class="section-title-row">
+          <h2>Hoy</h2>
+          <button class="text-btn" id="btnResetToday">Reset</button>
+        </div>
+
+        <div class="meal-list" id="mealList"></div>
+      </section>
+
+      <section id="view-planner" class="view">
+        <h2>Planner</h2>
+        <p class="muted">Configura horarios y activa alertas para preparar y comer.</p>
+
+        <div class="planner-grid">
+          <div class="planner-card">
+            <h3>Horarios</h3>
+            <div id="timeSettings"></div>
+            <div class="planner-actions">
+              <button class="btn btn-primary" id="btnSaveTimes">Guardar</button>
+              <button class="btn" id="btnEnableNotifs">Enable Notifications</button>
+            </div>
+            <p class="tiny muted">Tip: si instalas la app (PWA), suele funcionar mejor.</p>
+          </div>
+
+          <div class="planner-card">
+            <h3>Cómo funcionan las alertas</h3>
+            <ul class="muted">
+              <li>Te avisa 15 min antes (preparar) y a la hora exacta (comer).</li>
+              <li>Si cambias horarios, se reprograma.</li>
+              <li>En web, las alertas son más confiables cuando la app está abierta.</li>
+            </ul>
+          </div>
+        
+          <div class="planner-card">
+            <h3>AI (Plan semanal automático)</h3>
+            <p class="muted">Para no repetir platos, configura tu endpoint serverless (Cloudflare Worker) y la app actualiza cada semana.</p>
+            <label class="field">
+              <span>AI endpoint (URL)</span>
+              <input id="aiEndpoint" type="url" placeholder="https://...workers.dev" />
+            </label>
+            <div class="planner-actions">
+              <button class="btn" id="btnSaveAi">Guardar endpoint</button>
+              <button class="btn btn-primary" id="btnAiRefresh">Actualizar platos (AI)</button>
+            </div>
+            <p class="tiny muted">Seguridad: la API key va en el Worker, no en la web.</p>
+          </div>
+
+      </section>
+
+      <section id="view-progress" class="view">
+        <h2>Progress</h2>
+        <div class="progress-card">
+          <div class="muted">Comidas completadas hoy</div>
+          <div class="progress-big" id="doneCount">0/0</div>
+          <div class="muted tiny">Esto es simple a propósito: primero constancia, después “features”.</div>
+        </div>
+      </section>
+
+      <section id="view-recipes" class="view">
+        <h2>Recipes</h2>
+        <p class="muted">Plantillas rápidas (editable):</p>
+        <div class="recipes-grid" id="recipesGrid"></div>
+      </section>
+    </main>
+
+    <!-- Bottom nav -->
+    <nav class="bottom-nav" aria-label="Navegación inferior">
+      <button class="nav-btn active" data-route="home">
+        <svg viewBox="0 0 24 24"><path d="M12 3 3 10v11h6v-7h6v7h6V10l-9-7Z"/></svg>
+        <span>Home</span>
+      </button>
+      <button class="nav-btn" data-route="planner">
+        <svg viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7Zm12 8H5V8h14v2Zm0 4H5v-2h14v2Zm0 4H5v-2h14v2Z"/></svg>
+        <span>Planner</span>
+      </button>
+
+      <button class="nav-btn nav-plus" id="navPlus" title="Agregar comida">
+        <span aria-hidden="true">＋</span>
+      </button>
+
+      <button class="nav-btn" data-route="progress">
+        <svg viewBox="0 0 24 24"><path d="M4 19h16v2H4v-2Zm2-2h3V8H6v9Zm5 0h3V4h-3v13Zm5 0h3v-6h-3v6Z"/></svg>
+        <span>Progress</span>
+      </button>
+      <button class="nav-btn" data-route="recipes">
+        <svg viewBox="0 0 24 24"><path d="M7 2h10a2 2 0 0 1 2 2v17l-7-3-7 3V4a2 2 0 0 1 2-2Zm0 4h10V4H7v2Z"/></svg>
+        <span>Recipes</span>
+      </button>
+    </nav>
+
+    <!-- Modal -->
+    <!-- Language modal -->
+    <div class="modal" id="langModal" aria-hidden="true">
+      <div class="modal-backdrop" id="langBackdrop"></div>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="langTitle">
+        <div class="modal-head">
+          <h3 id="langTitle" data-i18n="lang.title">Idioma</h3>
+          <button class="icon-btn" id="closeLang" aria-label="Close">
+            <svg viewBox="0 0 24 24"><path d="M18.3 5.71 12 12l6.3 6.29-1.41 1.42L12 13.41l-6.89 6.3-1.42-1.41L10.59 12 3.69 5.11 5.11 3.69 12 10.59l6.89-6.9z"/></svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="muted" style="margin:0 0 12px" data-i18n="lang.help">Elige el idioma para la app. Se guarda en tu dispositivo.</p>
+          <label class="field" style="margin:0">
+            <span class="muted" style="display:block;margin-bottom:6px">&nbsp;</span>
+            <select id="langSelect" class="select">
+              <option value="es">Español</option>
+              <option value="pt">Português</option>
+              <option value="en">English</option>
+            </select>
+          </label>
+        </div>
+        <div class="modal-actions">
+          <button class="btn" id="cancelLang" data-i18n="lang.cancel">Cancelar</button>
+          <button class="btn btn-primary" id="saveLang" data-i18n="lang.save">Guardar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modal" aria-hidden="true">
+      <div class="modal-backdrop" id="modalBackdrop"></div>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-head">
+          <h3 id="modalTitle">Nueva comida</h3>
+          <button class="icon-btn" id="modalClose" aria-label="Cerrar">
+            <svg viewBox="0 0 24 24"><path d="M6 6 18 18M18 6 6 18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <label class="field">
+            <span>Nombre</span>
+            <input id="mealName" type="text" placeholder="Ej: Omelette + palta" maxlength="80" />
+          </label>
+          <label class="field">
+            <span>Hora</span>
+            <input id="mealTime" type="time" />
+          </label>
+          <label class="field">
+            <span>Notas</span>
+            <textarea id="mealNotes" rows="3" placeholder="Ej: sin azúcar, 1 porción..."></textarea>
+          </label>
+        </div>
+        <div class="modal-actions">
+          <button class="btn" id="btnCancel">Cancelar</button>
+          <button class="btn btn-primary" id="btnSaveMeal">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+  import { runSplash } from "./js/splash.js";
+  runSplash({ durationMs: 650 });
+</script>
+  <script type="module">
+    import { applyI18n } from "./js/i18n.js";
+    applyI18n();
+  </script>
+  <script type="module" src="js/app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js"));
+    }
+  </script>
+</body>
+</html>
